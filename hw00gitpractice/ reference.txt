@@ -1,0 +1,5 @@
+-initialize a git repo 
+-copy a repo to your local machine (clone) 
+-update local repo (pull)
+-lock in a version (commit)
+-sync changes to github (push)
