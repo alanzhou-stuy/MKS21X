@@ -7,18 +7,35 @@ public class  CirculatingBook extends LibraryBook {
      }
     
     public String getCurrentHolder(){
-    
+	return currentHolder;
     }
     
     public String getDueDate() {
-    
+	return dueDate;
     }
 
     public void setCurrentHolder(String currentholder) {
-
+	currentHolder = currentholder;
     }
     
     public void setDueDate(String duedate) {
+	dueDate = duedate;
+    }
+
+    public void checkout() {
+    
+    }
+
+    public void returned() {
+    
+    }
+    
+    public String circulationStatus() {
+
+    }
+    
+    public String toString() {
 
     }
 }
+
