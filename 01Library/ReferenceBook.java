@@ -1,10 +1,7 @@
 public class ReferenceBook extends LibraryBook {
     private String Collection;
     public ReferenceBook (String author, String title, String isbn, String callnumber,String collection) {
-	//author
-	//title
-	//isbn
-	//callnumber
+        super(author, title, isbn, callnumber);
 	Collection = collection;
     }
     
@@ -18,7 +15,7 @@ public class ReferenceBook extends LibraryBook {
 	Collection = collection;
     }
 
-    public void checkout() {
+    public void checkout(String patron, String due) {
 	System.out.println("cannot check out a reference book");
     }
 
@@ -27,11 +24,12 @@ public class ReferenceBook extends LibraryBook {
     }
 
     public String circulationStatus() {
-	System.out.println("non-circulating reference book");
+	return "non-circulating reference book";
     }
 
     public String toString() {
-	//stuff with super() here
+        String a = super.toString();
+	return a + ", " + Collection;
     }
     
 
