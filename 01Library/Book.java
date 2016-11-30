@@ -47,6 +47,6 @@ public class Book {
 
     public String toString() {
 	String a = "";
-	return a + "Author: " + Author +"\nTitle: " + Title + "\nISBN: " + ISBN;
+	return a + Author + ", " + Title + ", " + ISBN;
     }
 }
