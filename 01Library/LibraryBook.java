@@ -22,6 +22,11 @@ public abstract class LibraryBook extends Book implements Comparable<LibraryBook
     abstract void returned();
 
     abstract String circulationStatus();
-     
+
+    //compareTo
+
+    public String toString() {
+	//super stuff
+    }
 
 }
