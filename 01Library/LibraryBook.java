@@ -22,21 +22,13 @@ public abstract class LibraryBook extends Book implements Comparable<LibraryBook
     abstract String circulationStatus();
 
     public int compareTo(LibraryBook o) {
-	if ((callNumber.compareTo( o.callNumber)) > 0) {
-		return 1;
-	    }
-	else if ((callNumber.compareTo(o.callNumber)) < 0){
-		return -1;
-	    }
-	    else {
-		return 0;
-	    }
+	return callNumber.compareTo(o.getCallNumber());
     }
     
 
     public String toString() {
 	String a = super.toString();
-	    return a + ", " + callNumber;
+	return a + ", " + circulationStatus() + ", " + callNumber;
     }
 }
 
