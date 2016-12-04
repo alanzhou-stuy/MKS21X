@@ -1,28 +1,29 @@
+import java.util.Iterator;
 public class SuperArrayIterator implements Iterator<String>  {
 
-    import java.util.Iterator;
-
     //instance variables
-    private int arrayLook;
+    private SupperArray array;
     private int elementLook;
-    private int start;
-    private int end;
 
     //constructor
-    public SuperArrayIterator (int start, int end){
-	this.start = start;
-	this.end = end;
-	arrayLook = 0;
+    public SuperArrayIterator (SuperArray x){
+	array  = x;
 	elementLook = 0;
     }
     
     //methods
     public boolean hasNext() {
-
+	return elementLook < array.size();
     }
 
-    public E next() {
-
+    public String next() {
+	if (hasNext()) {
+	    elementLook ++;
+	    return array.get(elementLook - 1);
+	}
+	else {
+	    throw new NoSuchElementException();
+	}
     }
 
     public void remove() {
