@@ -169,6 +169,7 @@ public class SuperArray implement Iterable<String>{
 
 
     //iterator()
-    public iterator(){
+    public Iterator<String> iterator(){
+	return new SuperArrayIterator(this);
     }
 }
