@@ -30,19 +30,16 @@ public class SuperArray implements Iterable<String>{
       return x;
   }
     public boolean add (String n) {
-	if (size < data.length) {
-	    data[size] = n;
-	    size ++;
-	}
-	else{
+	size ++;
+        while (size() > data.length) {
 	    grow();
-	    add(n);
 	}
+	data[size() - 1] = n;
 	return true;
     }
     private void grow() {
-	String[] x = new String[(data.length * 2) + 1];
-	for (int i = 0; i < x.length; i++) {
+	String[] x = new String[(size * 2) + 1];
+	for (int i = 0; i < size - 1; i++) {
 	    x[i] = data[i];
 	}
 	data = x;
