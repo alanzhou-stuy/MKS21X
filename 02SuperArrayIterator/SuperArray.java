@@ -1,4 +1,5 @@
-public class SuperArray implement Iterable<String>{
+import java.util.Iterator;
+public class SuperArray implements Iterable<String>{
     private String[] data;
     private int size;
     public SuperArray() {
@@ -40,7 +41,7 @@ public class SuperArray implement Iterable<String>{
 	return true;
     }
     private void grow() {
-	String[] x = new String[data.length * 2];
+	String[] x = new String[(data.length * 2) + 1];
 	for (int i = 0; i < x.length; i++) {
 	    x[i] = data[i];
 	}
