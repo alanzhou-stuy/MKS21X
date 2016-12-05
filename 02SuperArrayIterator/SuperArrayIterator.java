@@ -1,4 +1,4 @@
-import java.util.Iterator;
+import java.util.*;
 public class SuperArrayIterator implements Iterator<String>  {
 
     //instance variables
@@ -17,9 +17,13 @@ public class SuperArrayIterator implements Iterator<String>  {
     }
 
     public String next() {
-	elementLook ++;
-	return array.get(elementLook - 1);
-	
+	if (hasNext()) {
+	    elementLook ++;
+	    return array.get(elementLook - 1);
+	}
+	else {
+	    throw new NoSuchElementException();
+	}
     }
 
     public void remove() {
