@@ -2,7 +2,7 @@ import java.util.Iterator;
 public class SuperArrayIterator implements Iterator<String>  {
 
     //instance variables
-    private SupperArray array;
+    private SuperArray array;
     private int elementLook;
 
     //constructor
@@ -17,13 +17,9 @@ public class SuperArrayIterator implements Iterator<String>  {
     }
 
     public String next() {
-	if (hasNext()) {
-	    elementLook ++;
-	    return array.get(elementLook - 1);
-	}
-	else {
-	    throw new NoSuchElementException();
-	}
+	elementLook ++;
+	return array.get(elementLook - 1);
+	
     }
 
     public void remove() {
