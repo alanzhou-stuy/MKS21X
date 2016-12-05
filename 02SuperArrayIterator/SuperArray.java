@@ -1,4 +1,4 @@
-import java.util.Iterator;
+import java.util.*;
 public class SuperArray implements Iterable<String>{
     private String[] data;
     private int size;
@@ -29,7 +29,7 @@ public class SuperArray implements Iterable<String>{
       }
       return x;
   }
-    public boolean add (String n) {
+  public boolean add (String n) {
 	size ++;
         while (size() > data.length) {
 	    grow();
