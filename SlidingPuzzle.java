@@ -7,6 +7,25 @@ public class SlidingPuzzle {
 	initialize();
     }
     public boolean isDone() {
+	int n = 1;
+	booelan x = true;
+	for (int i = 0 ; i < side; i++) {
+	    for (int y = 0; y < side; y++ ) {
+		if (values[i][y] == n){
+		    n++;
+		}
+		else if ((values[i][y] == 0) && x = true){
+		    x = false;
+		}
+		else {
+		    return false;
+		}
+	    }
+	}
+	return true;
+    }
+
+    public boolean isDone() {
 
     }
 
