@@ -12,14 +12,10 @@ public class Barcode implements Comparable<Barcode>{
 	  throw new RuntimeException();
       }
       _zip = zip;
-      int sum;
-      for (int i = 0; i < 5; i++) {
-	  sum += (int)zip.charAt(i);
-      }
-      _checkDigit = sum % 10;
+      _checkDigit = checkSum(zip) % 10;
   }
 
-  /*
+  
 // postcondition: Creates a copy of a bar code.
   public Barcode clone(){
   }
@@ -27,16 +23,45 @@ public class Barcode implements Comparable<Barcode>{
 
 // postcondition: computes and returns the check sum for _zip
   private int checkSum(){
+      int sum;
+      for (int i = 0; i < 5; i++) {
+	  sum += (int)zip.charAt(i);
+      }
+      return sum;
   }
 
 //postcondition: format zip + check digit + Barcode 
 //ex. "084518  |||:::|::|::|::|:|:|::::|||::|:|"      
   public String toString(){
+      String x;
+      switch(num) {
+      case 1:
+	  x = ":::||"
+      case 2:
+	  x = "::|:|"
+      case 3:
+	  x = "::||:"
+      case 4:
+	  x = ":|::|" 
+      case 5:
+	  x = ":|:|:"
+      case 6:
+	  x = ":||::"
+      case 7:
+	  x = "|:::|"
+      case 8:
+	  x = "|::|:"
+      case 9:
+	  x = "|:|::"
+      case 10: //0
+	  x = "||::::"
+      }
   }
-
+  
 
 // postcondition: compares the zip + checkdigit, in numerical order. 
   public int compareTo(Barcode other){
+      return (_zip + _checkDigit).compareTo(other.clone());
   }
-  */    
+  
 }
