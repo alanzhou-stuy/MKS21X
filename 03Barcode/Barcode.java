@@ -1,49 +1,34 @@
 public class Barcode implements Comparable<Barcode>{
-   private String _zip;
-   private int _checkDigit;
+   private String zip;
+    private int checkDigit;
 
-// constructors
-//precondtion: _zip.length() = 5 and zip contains only digits.
-//postcondition: throws a runtime exception zip is not the correct length
-//               or zip contains a non digit
-//               _zip and _checkDigit are initialized.
-  public Barcode(String zip) {
+  public Barcode(String _zip) {
       for (int i = 0; i < 5; i++) {
-	  if (zip.charAt(i) < '0' || zip.charAt(i) > '9') {
+	  if (_zip.charAt(i) < '0' || _zip.charAt(i) > '9') {
 	      throw new IllegalArgumentException();
 	  }
       }
-      if (zip.length() != 5) {
+      if (_zip.length() != 5) {
 	  throw new IllegalArgumentException();
       }
       
-      _zip = zip;
-      _checkDigit = checkSum() % 10;
+      zip = _zip;
+      checkDigit = checkSum() % 10;
   }
-
-  
-// postcondition: Creates a copy of a bar code.
-  public Barcode clone(){
-      Barcode cloned;
-      cloned = this;
-      return cloned;
-  }
-
-
-// postcondition: computes and returns the check sum for _zip
+    
     private int checkSum(){
 	int sum = 0;
 	for (int i = 0; i < 5; i++) {
-	    sum += (_zip.charAt(i) - '0');
+	    sum += (zip.charAt(i) - '0');
 	}
 	return sum;
     }
 
-    public String formatNumber() {
+    private static String toCode(String zip) {
 	String x = "";
 	String answer = "";
 	for (int i = 0; i < 6; i++) {
-	    switch((_zip + _checkDigit).charAt(i)) {
+	    switch(zip.charAt(i)) {
 	    case '1':
 		x = ":::||";
 		break;
@@ -77,19 +62,42 @@ public class Barcode implements Comparable<Barcode>{
 	    }
 	    answer += x;
 	}
-	return answer;
+	return "|" + answer + "|";
+    }
+
+    public static String toZip(String code) {
+	if (code.length() != 32) {
+	    throw new IllegalArgumentException("Incorrect Length");
+	}
+	if (code.charAt(1) != '|' || code.charAt(32) != '|') {
+	    throw new IllegalArgumentException("Sidebar is wrong");
+	}
+	for (int i = 0; i < 32; i++) {
+	  if (code.charAt(i) < '0' || code.charAt(i) > '9') {
+	      throw new IllegalArgumentException("Incorrect characters");
+	  }
+	}
+        int sum = 0;
+	for (int i = 0; i < 5; i++) {
+	    sum += (int)code.charAt(i);
+	}
+	if (sum != (int)code.charAt(5)) {
+	    throw new IllegalArgumentException("Check number is wrong");
+	}
+	String answer = "";
+	String subcode = code.substring(1,32;
+	for (int i = 0; i < 30; i++) {
+	    
+	}
+	
     }
     
-//postcondition: format zip + check digit + Barcode 
-//ex. "084518  |||:::|::|::|::|:|:|::::|||::|:|"      
   public String toString(){
-      return  _zip + _checkDigit + "   " + "|" + this.formatNumber() + "|";
+      return  zip + checkDigit + "   " + toCode(zip); 
   }
   
-
-// postcondition: compares the zip + checkdigit, in numerical order. 
   public int compareTo(Barcode other){
-      return (Integer.valueOf(_zip + _checkDigit)).compareTo(Integer.valueOf(other._zip + other._checkDigit));
+      return zip.compareTo(other.zip);
   }
   
 
