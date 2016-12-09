@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Barcode implements Comparable<Barcode>{
    private String zip;
-    private int checkDigit;
+   private int checkDigit;
 
   public Barcode(String _zip) {
       if (_zip.length() != 5) {
@@ -14,7 +14,7 @@ public class Barcode implements Comparable<Barcode>{
 	  }
       }  
       zip = _zip;
-      checkDigit = checkSum(_zip) % 10;
+      checkDigit = checkSum(zip) % 10;
   }
     
     private static int checkSum(String zip){
@@ -25,11 +25,11 @@ public class Barcode implements Comparable<Barcode>{
 	return sum;
     }
 
-    private static String toCode(String zip) {
+    public static String toCode(String zip) {
 	String x = "";
 	String answer = "";
-	zip += checkSum(zip);
-	for (int i = 0; i < 5; i++) {
+	zip += checkSum(zip) % 10;
+	for (int i = 0; i < 6; i++) {
 	    switch(zip.charAt(i)) {
 	    case '1':
 		x = ":::||";
@@ -71,7 +71,7 @@ public class Barcode implements Comparable<Barcode>{
 	if (code.length() != 32) {
 	    throw new IllegalArgumentException("Incorrect Length");
 	}
-	if (code.charAt(1) != '|' || code.charAt(32) != '|') {
+	if (code.charAt(0) != '|' || code.charAt(31) != '|') {
 	    throw new IllegalArgumentException("Sidebar is wrong");
 	}
 	for (int i = 0; i < 32; i++) {
@@ -83,7 +83,7 @@ public class Barcode implements Comparable<Barcode>{
 	for (int i = 0; i < 5; i++) {
 	    sum += (int)code.charAt(i);
 	}
-	if (sum != (int)code.charAt(5)) {
+	if (sum % 10 != (int)code.charAt(5)) {
 	    throw new IllegalArgumentException("Check number is wrong");
 	}
 	String _answer = "";
@@ -129,10 +129,5 @@ public class Barcode implements Comparable<Barcode>{
   public int compareTo(Barcode other){
       return zip.compareTo(other.zip);
   }
-    public static void main(String args[]){
-Barcode b = new Barcode("08451");
-Barcode c = new Barcode("99999");
-Barcode d = new Barcode("01111");
-System.out.println(b); //084518 |||:::|::|::|::|:|:|::::|||::|:|
-    }
+   
 }
