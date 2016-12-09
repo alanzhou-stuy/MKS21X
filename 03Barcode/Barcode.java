@@ -1,17 +1,18 @@
+import java.util.*;
+
 public class Barcode implements Comparable<Barcode>{
    private String zip;
     private int checkDigit;
 
   public Barcode(String _zip) {
+      if (_zip.length() != 5) {
+	  throw new IllegalArgumentException();
+      }
       for (int i = 0; i < 5; i++) {
 	  if (_zip.charAt(i) < '0' || _zip.charAt(i) > '9') {
 	      throw new IllegalArgumentException();
 	  }
-      }
-      if (_zip.length() != 5) {
-	  throw new IllegalArgumentException();
-      }
-      
+      }  
       zip = _zip;
       checkDigit = checkSum() % 10;
   }
@@ -27,7 +28,7 @@ public class Barcode implements Comparable<Barcode>{
     private static String toCode(String zip) {
 	String x = "";
 	String answer = "";
-	for (int i = 0; i < 6; i++) {
+	for (int i = 0; i < 5; i++) {
 	    switch(zip.charAt(i)) {
 	    case '1':
 		x = ":::||";
@@ -85,11 +86,22 @@ public class Barcode implements Comparable<Barcode>{
 	    throw new IllegalArgumentException("Check number is wrong");
 	}
 	String answer = "";
-	String subcode = code.substring(1,32;
+	String subcode = code.substring(1,32);
+	String temp = "";
+	int n = 0;
+	ArrayList<String> symbols = new ArrayList<String>(Arrays.asList("||:::", ":::||", "::|:|", "::||:", ":|::|", ":|:|:", ":||::", "|:::|", "|::|:", "|:|::"));
 	for (int i = 0; i < 30; i++) {
-	    
+	    if (n != 4) {
+		temp += code.charAt(i);
+		n++;
+	    }
+	    else {
+		answer += symbols.indexOf(temp);
+		temp = "";
+		n = 0;
+	    }
 	}
-	
+	return answer;	
     }
     
   public String toString(){
@@ -99,7 +111,4 @@ public class Barcode implements Comparable<Barcode>{
   public int compareTo(Barcode other){
       return zip.compareTo(other.zip);
   }
-  
-
-
 }
