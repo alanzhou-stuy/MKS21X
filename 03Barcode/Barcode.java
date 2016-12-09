@@ -111,4 +111,10 @@ public class Barcode implements Comparable<Barcode>{
   public int compareTo(Barcode other){
       return zip.compareTo(other.zip);
   }
+    public static void main(String args[]){
+Barcode b = new Barcode("08451");
+Barcode c = new Barcode("99999");
+Barcode d = new Barcode("01111");
+System.out.println(b); //084518 |||:::|::|::|::|:|:|::::|||::|:|
+    }
 }
