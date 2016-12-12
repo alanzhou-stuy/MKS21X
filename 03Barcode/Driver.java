@@ -15,7 +15,7 @@ public class Driver{
 	  Barcode e = new Barcode("123456");
 	  System.out.println(e);
 	*/
-	System.out.println(b.toZip("|||:::|::|::|::|:|:|::::|||::|:|"));
+	System.out.println(b.toZip("||:|::|:::||:|::::||::|::|::|:||"));
 	System.out.println(c.toCode("123123"));
 	/*length
 	  Barcode e = new Barcode("1234");
