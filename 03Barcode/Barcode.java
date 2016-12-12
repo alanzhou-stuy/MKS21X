@@ -75,18 +75,11 @@ public class Barcode implements Comparable<Barcode>{
 	    throw new IllegalArgumentException("Sidebar is wrong");
 	}
 	for (int i = 0; i < 32; i++) {
-	  if (code.charAt(i) < '0' || code.charAt(i) > '9') {
+	  if (code.charAt(i) != ':' && code.charAt(i) != '|') {
 	      throw new IllegalArgumentException("Incorrect characters");
 	  }
 	}
-        int sum = 0;
-	for (int i = 0; i < 5; i++) {
-	    sum += (int)code.charAt(i);
-	}
-	if (sum % 10 != (int)code.charAt(5)) {
-	    throw new IllegalArgumentException("Check number is wrong");
-	}
-	String _answer = "";
+        String _answer = "";
 	String _temp = "";
 	int y = 0;
 	String answer = "";
@@ -94,7 +87,7 @@ public class Barcode implements Comparable<Barcode>{
 	String temp = "";
 	int n = 0;
 	ArrayList<String> symbols = new ArrayList<String>(Arrays.asList("||:::", ":::||", "::|:|", "::||:", ":|::|", ":|:|:", ":||::", "|:::|", "|::|:", "|:|::"));
-	for (int i = 0; i < 30; i++) {
+       for (int i = 0; i < 30; i++) {
 	    if (y != 4) {
 		_temp += subcode.charAt(i);
 		y++;
@@ -106,6 +99,14 @@ public class Barcode implements Comparable<Barcode>{
 		    }
 		}
 	    }
+	}
+       
+	int sum = 0;
+	for (int i = 0; i < 5; i++) {
+	    sum += (int)code.charAt(i);
+	}
+	if (sum % 10 != (int)code.charAt(5)) {
+	    throw new IllegalArgumentException("Check number is wrong");
 	}
 	
 	for (int i = 0; i < 30; i++) {
@@ -120,6 +121,7 @@ public class Barcode implements Comparable<Barcode>{
 	    }
 	}
 	return answer;	
+    
     }
     
   public String toString(){
@@ -127,7 +129,7 @@ public class Barcode implements Comparable<Barcode>{
   }
   
   public int compareTo(Barcode other){
-      return zip.compareTo(other.zip);
+      return (zip + checkDigit % 10).compareTo(other.zip + checkDigit % 10);
   }
    
 }
