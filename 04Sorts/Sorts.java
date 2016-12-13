@@ -6,21 +6,23 @@ public class Sorts{
 
   public static void selectionSort(int[] data){  
       int smallestNum = data[0];
-      int temp = 0;
-      for (int i = 0; i <  data.length - 2; i ++) {
-	  for (int n = 0; n < data.length - i; n++) {
-	      if (data[n + i] < smallestNum) {
-		  smallestNum = data[n + i];
+      int temp = data[0];
+      for (int i = 0; i <  data.length - 1; i ++) {
+	  for (int n = i; n < data.length ; n++) {
+	      if (data[n] < smallestNum) {
 		  temp = n;
+		  smallestNum = data[n];
 	      }
 	  }
 	  data[temp] = data[i];
-	  data[i] = smallestNum;   
+	  data[i] = smallestNum;
+	  smallestNum = data[i+1];
+	  temp = data[i+1];
       }
   }
 
     public static void main(String[] args) {
-	int[]data = {10, 9, 2, 3, 0, 11};
+	int[]data = {10, 9, 2, 3, 0, 11, 0, 0, 0, 3};
 	selectionSort(data);
 	String x = "{";
 	for (int i = 0; i < data.length; i++){
