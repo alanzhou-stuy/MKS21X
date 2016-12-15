@@ -7,7 +7,7 @@ public class Sorts{
     //max work, always N
   public static void selectionSort(int[] data){  
       int smallestNum = data[0];
-      int temp = data[0];
+      int temp = 0;
       for (int i = 0; i <  data.length - 1; i ++) {
 	  for (int n = i; n < data.length ; n++) {
 	      if (data[n] < smallestNum) {
@@ -19,6 +19,7 @@ public class Sorts{
 	  data[i] = smallestNum;
 	  smallestNum = data[i+1];
 	  temp = data[i+1];
+	  
       }
   }
 
@@ -61,7 +62,7 @@ public class Sorts{
 
 
     public static void main(String[] args) {
-	int[]data = {10, 9, 2, 3, 0, 11, 0, 0, 0, 3, -1, -3, -4, -10, 11};
+	int[]data = {10, 9, 2, 3, 0, 11, 0, 0, 0, 3, -3, -2, -1, 9, 12, 13};
 	selectionSort(data);
 	//insertionSort(data);
 	//bubbleSort(data);
