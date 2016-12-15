@@ -39,17 +39,39 @@ public class Sorts{
 	}
     }
 
+    //swapping a lot and looks at each element twice
+    public static void bubbleSort(int[] data){
+	int swapped = 0;
+	int temp = 0;
+	for (int n = data.length - 1; n > 0 ; n--) {
+	    for (int i = 0; i < n; i++) {
+		if (data[i] > data[i + 1])  {
+		    temp = data[i];
+		    data[i] = data[i+1];
+		    data[i+1] = temp;
+		    swapped = 1;
+		}
+	    }
+	    if (swapped == 0) {
+		return;
+	    }
+	    swapped = 0;
+	}
+    }
+
 
     public static void main(String[] args) {
-	int[]data = {10, 9, 2, 3, 0, 11, 0, 0, 0, 3};
-	//selectionSort(data);
-	insertionSort(data);
+	int[]data = {10, 9, 2, 3, 0, 11, 0, 0, 0, 3, -1, -3, -4, -10, 11};
+	selectionSort(data);
+	//insertionSort(data);
+	//bubbleSort(data);
 	String x = "{";
 	for (int i = 0; i < data.length; i++){
 	    x += data[i] + " ";
 	}
 	
 	System.out.println(x + "}");
+	
     }
 }
 
