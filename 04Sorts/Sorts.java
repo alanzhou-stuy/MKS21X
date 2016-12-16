@@ -18,7 +18,8 @@ public class Sorts{
 	      }
 	  }
 	  smallestNum = data[i+1];
-	  temp = data[i+1];			  
+	  temp = data[i+1];
+	  
       }
   }
 
