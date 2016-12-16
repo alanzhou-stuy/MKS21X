@@ -13,13 +13,12 @@ public class Sorts{
 	      if (data[n] < smallestNum) {
 		  temp = n;
 		  smallestNum = data[n];
+		  data[temp] = data[i];
+		  data[i] = smallestNum;
 	      }
 	  }
-	  data[temp] = data[i];
-	  data[i] = smallestNum;
 	  smallestNum = data[i+1];
-	  temp = data[i+1];
-	  
+	  temp = data[i+1];			  
       }
   }
 
@@ -63,8 +62,10 @@ public class Sorts{
 
     public static void main(String[] args) {
 	int[]data = {10, 9, 2, 3, 0, 11, 0, 0, 0, 3, -3, -2, -1, 9, 12, 13};
-	selectionSort(data);
-	//insertionSort(data);
+	int[]data1 = {0,1,2,3,4,5,6,7,8,9};
+	int[]data2 = {9,8,7,6,5,4,3,2,1,0};
+	//selectionSort(data);
+	insertionSort(data);
 	//bubbleSort(data);
 	String x = "{";
 	for (int i = 0; i < data.length; i++){
@@ -75,5 +76,3 @@ public class Sorts{
 	
     }
 }
-
-
