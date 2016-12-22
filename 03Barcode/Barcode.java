@@ -79,48 +79,11 @@ public class Barcode implements Comparable<Barcode>{
 	      throw new IllegalArgumentException("Incorrect characters");
 	  }
 	}
-        String _answer = "";
-	String _temp = "";
-	int y = 0;
-	String answer = "";
-	String subcode = code.substring(1,32);
-	String temp = "";
-	int n = 0;
-	ArrayList<String> symbols = new ArrayList<String>(Arrays.asList("||:::", ":::||", "::|:|", "::||:", ":|::|", ":|:|:", ":||::", "|:::|", "|::|:", "|:|::"));
-       for (int i = 0; i < 30; i++) {
-	    if (y != 4) {
-		_temp += subcode.charAt(i);
-		y++;
+
+	if((checkSum(zipcode.subString(0,5) % 10)) != (Integer.parseInt(zipcode) % 10)) {
+		throw new IllegalArgumentException("Incorrect sum");
 	    }
-	    else {
-	        for (int z = 0; z < 10; z++) {
-		    if (_temp != symbols.get(z)) {
-			throw new IllegalArgumentException("encoded ints are invalid");
-		    }
-		}
-	    }
-	}
-       
-	int sum = 0;
-	for (int i = 0; i < 5; i++) {
-	    sum += (int)code.charAt(i);
-	}
-	if (sum % 10 != (int)code.charAt(5)) {
-	    throw new IllegalArgumentException("Check number is wrong");
-	}
-	
-	for (int i = 0; i < 30; i++) {
-	    if (n != 4) {
-		temp += subcode.charAt(i);
-		n++;
-	    }
-	    else {
-		answer += symbols.indexOf(temp);
-		temp = "";
-		n = 0;
-	    }
-	}
-	return answer;	
+	    
     
     }
     
