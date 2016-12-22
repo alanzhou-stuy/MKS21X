@@ -6,6 +6,9 @@ public class Sorts{
 
     //max work, always N
   public static void selectionSort(int[] data){  
+      if (data.length < 2) {
+	  return;
+      }
       int smallestNum = data[0];
       int temp = 0;
       for (int i = 0; i <  data.length - 1; i ++) {
@@ -25,6 +28,9 @@ public class Sorts{
 
     //has potential for les work, average list is n/2 insertions  
     public static void insertionSort(int[] data) {
+	if (data.length < 2) {
+	    return;
+	}
 	for(int t = 1; t < data.length; t++) {
 	    int num = data[t];
 	    int temp = 0;
@@ -42,6 +48,9 @@ public class Sorts{
 
     //swapping a lot and looks at each element twice
     public static void bubbleSort(int[] data){
+	if (data.length < 2) {
+	    return;
+	}
 	int swapped = 0;
 	int temp = 0;
 	for (int n = data.length - 1; n > 0 ; n--) {
@@ -62,15 +71,16 @@ public class Sorts{
 
 
     public static void main(String[] args) {
-	int[]data = {10, 9, 2, 3, 0, 11, 0, 0, 0, 3, -3, -2, -1, 9, 12, 13};
-	int[]data1 = {0,1,2,3,4,5,6,7,8,9};
-	int[]data2 = {9,8,7,6,5,4,3,2,1,0};
-	//selectionSort(data);
-	insertionSort(data);
+	int[]data2 = {10, 9, 2, 3, 0, 11, 0, 0, 0, 3, -3, -2, -1, 9, 12, 13};
+	int[]data = {0,1,2,3,4,5,6,7,8,9};
+	int[]data1 = {9,8,7,6,5,4,3,2,1,0};
+	int[]data3 = {};
+	selectionSort(data2);
+	//insertionSort(data);
 	//bubbleSort(data);
 	String x = "{";
-	for (int i = 0; i < data.length; i++){
-	    x += data[i] + " ";
+	for (int i = 0; i < data2.length; i++){
+	    x += data2[i] + " ";
 	}
 	
 	System.out.println(x + "}");
