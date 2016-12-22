@@ -79,18 +79,30 @@ public class Barcode implements Comparable<Barcode>{
 	      throw new IllegalArgumentException("Incorrect characters");
 	  }
 	}
-	String[] code = {"||:::", ":::||", "::|:|", "::||:", ":|::|", ":|:|:", ":||::", "|:::|", "|::|:", "|:|::"};
+	String[] code1 = {"||:::", ":::||", "::|:|", "::||:", ":|::|", ":|:|:", ":||::", "|:::|", "|::|:", "|:|::"};
+	String x = "";
 	for (int i = 1; i < 27; i+= 5) {
-	    String x = code.substring(i, i + 5);
-	    for (int n = 0; n < 5; n++) {
-		x[n] 
+	    boolean y = false;
+	    for (int n = 0; n < 10 ; n++) {
+		if (code.substring(i, i + 5).equals(code1[n])) {
+		    x+= n;
+		    y = true;
+		}
 	    }
-	    
-	if((checkSum(zipcode.subString(0,5) % 10)) != (Integer.parseInt(zipcode) % 10)) {
+		if ( y == false) {
+		    throw new IllegalArgumentException("Encode ints are invalid");
+		}
+	}
+	int forCheckSum = 0;
+	for (int i = 0; i < 10; i++) {
+	    if (code.substring(26,31).equals(code1[i])) {
+		forCheckSum = i;
+	    }
+	}
+	if((checkSum(code.substring(1,6)) % 10) != (forCheckSum % 10)) {
 		throw new IllegalArgumentException("Checksum is invalid");
 	    }
-	    
-    
+	return x.substring(0,5);
     }
     
   public String toString(){
