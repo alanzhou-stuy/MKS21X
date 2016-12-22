@@ -79,9 +79,15 @@ public class Barcode implements Comparable<Barcode>{
 	      throw new IllegalArgumentException("Incorrect characters");
 	  }
 	}
-
+	String[] code = {"||:::", ":::||", "::|:|", "::||:", ":|::|", ":|:|:", ":||::", "|:::|", "|::|:", "|:|::"};
+	for (int i = 1; i < 27; i+= 5) {
+	    String x = code.substring(i, i + 5);
+	    for (int n = 0; n < 5; n++) {
+		x[n] 
+	    }
+	    
 	if((checkSum(zipcode.subString(0,5) % 10)) != (Integer.parseInt(zipcode) % 10)) {
-		throw new IllegalArgumentException("Incorrect sum");
+		throw new IllegalArgumentException("Checksum is invalid");
 	    }
 	    
     
